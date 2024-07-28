@@ -1,5 +1,10 @@
-import {create} from 'zustand';
+import { create } from 'zustand';
 import axios from 'axios';
+
+interface CompanyDetails {
+  logo_url: string;
+  name: string;
+}
 
 interface AuthStore {
   isSignUp: boolean;
@@ -15,6 +20,9 @@ interface AuthStore {
   toggleMode: () => void;
   handleSignUp: (email: string, password: string, confirmPassword: string) => Promise<void>;
   handleSignIn: (email: string, password: string) => Promise<void>;
+  handleSearch: (keyword: string) => Promise<void>;
+  handleDetails: () => Promise<void>;
+  companyDetails: CompanyDetails | null; // Add companyDetails to state
 }
 
 const useAuthStore = create<AuthStore>((set) => ({
@@ -30,51 +38,101 @@ const useAuthStore = create<AuthStore>((set) => ({
   setLoading: (loading) => set({ loading }),
   toggleMode: () => set((state) => ({ isSignUp: !state.isSignUp })),
   handleSignUp: async (email, password, confirmPassword) => {
-    const setLoading = set;
-    setLoading({ loading: true });
+    set({ loading: true });
     try {
       if (password !== confirmPassword) {
         alert("Passwords don't match");
         return;
       }
-
       const response = await axios.post('https://api-stg.commanderai.com/auth/signup', {
         email,
         password,
       });
-
       console.log('Signup Successful', response.data);
-      // Clear form fields after successful signup
       set({ email: '', password: '', confirmPassword: '' });
-      // Handle success, e.g., redirect to dashboard or set token in local storage
-    } catch (error:any) {
+    } catch (error: any) {
       console.error('Error signing up:', error.message);
       alert('Error signing up. Please try again.');
     } finally {
-      setLoading({ loading: false });
+      set({ loading: false });
     }
   },
   handleSignIn: async (email, password) => {
-    const setLoading = set;
-    setLoading({ loading: true });
+    set({ loading: true });
     try {
       const response = await axios.post('https://api-stg.commanderai.com/auth/login', {
         email,
         password,
       });
-
-      console.log('Login Successful', response.data);
-      localStorage.setItem('token', response.data.token);
-      // Clear form fields after successful login
-      set({ email: '', password: '' });
-      // Handle success, e.g., redirect to dashboard
-    } catch (error:any) {
+      console.log('Sign In Response:', response.data);
+      if (response.data.success && response.data.data.token) {
+        const { token } = response.data.data;
+        localStorage.setItem('authToken', token);
+        set({ email: '', password: '' });
+      } else {
+        console.error('Failed to get token from response');
+        alert('Failed to sign in. Please try again.');
+      }
+    } catch (error: any) {
       console.error('Error signing in:', error.message);
       alert('Error signing in. Please check your credentials.');
     } finally {
-      setLoading({ loading: false });
+      set({ loading: false });
     }
   },
+  handleSearch: async (keyword) => {
+    set({ loading: true });
+    try {
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        console.log("No token found in localStorage");
+        return;
+      }
+      const response = await axios.get('https://api-stg.commanderai.com/companies/99e01fb7-6eaa-425d-ad18-08544ba1fa12/company_prospects', {
+        params: {
+          prospect_status: '',
+          keyword: keyword,
+          page: 1,
+          limit: 15,
+          source: 'hubspot'
+        },
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log('Search Response:', response.data);
+    } catch (error: any) {
+      console.error('Error fetching data:', error.message);
+    } finally {
+      set({ loading: false });
+    }
+  },
+  handleDetails: async () => {
+    set({ loading: true });
+    try {
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        console.log("No token found in localStorage");
+        return;
+      }
+      const response = await axios.get('https://api-stg.commanderai.com/company_prospects/b133c6b2-45c4-4c28-9e8d-9a8d01e7bb8b?company_contact_id=37cca9dc-d502-4693-89bb-143be701fd64', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log('Details Response:', response.data);
+      const { company } = response.data.data;
+      set({ companyDetails: {
+        logo_url: company.logo_url || '',
+        name: company.name || ''
+      }});
+    } catch (error: any) {
+      console.error('Error fetching data:', error.message);
+    } finally {
+      set({ loading: false });
+    }
+  },
+  companyDetails: null // Initialize companyDetails
 }));
 
 export default useAuthStore;
