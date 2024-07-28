@@ -48,7 +48,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row overflow-auto">
+    <div className="min-h-screen flex flex-col md:flex-row overflow-auto ">
           <div className="w-full lg:min-h-dvh lg:w-6/12 md:p-2  lg:block">
               <div
                 className="min-h-full block md:flex flex-col justify-between rounded-lg"

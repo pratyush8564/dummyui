@@ -23,10 +23,6 @@
 // } from "./icon";
 // import Icon from "./icons";
 
-import DataTable from "react-data-table-component"
-import Header from "./Header"
-import Sidebar from "./Sidebar"
-
 // const Dashboard = () => {
 //   const [keyword, setKeyword] = useState("");
 //   const { handleSearch, handleDetails, loading, companyDetails } = useAuthStore(
@@ -284,82 +280,30 @@ import Sidebar from "./Sidebar"
 
 
 
+
+
+
+import Header from "./Header"
+import Sidebar from "./Sidebar"
+import DashboardCards from "./DashboardCards";
+import DatatableComponent from "./DatatableComponent";
 const Dashboard = () => {
-  const data: any = [];
-  const columns = [
-    {
-      name: 'Prospects',
-      selector: (row: any) => row.name,
-    },
-    {
-      name: 'Status',
-      selector: (row: any) => row.status,
-    },
-  ];
+
   return (
     <div className="m-6">
       <Header />
-      <div className="mb-4 flex items-center">
+      <div className="flex gap-8">
         <Sidebar />
-        <input
-          type="text"
-          placeholder="Search"
-          className="border rounded p-2 flex-1"
-        />
-        <button className="ml-2 p-2 bg-gray-200 text-gray-700 rounded">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12H3m12 0l-4-4m4 4l-4 4m9-10a9 9 0 110 18 9 9 0 010-18z" />
-          </svg>
-        </button>
-        <DataTable
-          columns={columns}
-          data={data}
-          noDataComponent="There are no records to display"
-          subHeader
-          subHeaderComponent={
-            <div className="flex justify-between items-center w-full">
-              <div className="flex space-x-4">
-                <button className="p-2 bg-gray-200 text-gray-700 rounded">PROSPECTS</button>
-                <button className="p-2 bg-gray-200 text-gray-700 rounded">STATUS</button>
-              </div>
-              <button className="p-2 bg-gray-200 text-gray-700 rounded flex items-center">
-                FILTER
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-            </div>
-          }
-        />
+        <div className=" ml-4">
+          <DatatableComponent />
+        </div>
+        <div>
 
-
-
-
-        <div className="grid grid-cols-4 gap-4 mb-4">
-          <div className="p-4 bg-gray-100 rounded">
-            <div className="text-gray-600">Total prospects</div>
-            <div className="text-2xl font-semibold">0</div>
-            <div className="text-green-600">0%</div>
-          </div>
-          <div className="p-4 bg-gray-100 rounded">
-            <div className="text-gray-600">Engaged</div>
-            <div className="text-2xl font-semibold">0</div>
-            <div className="text-green-600">0%</div>
-          </div>
-          <div className="p-4 bg-gray-100 rounded">
-            <div className="text-gray-600">Customers</div>
-            <div className="text-2xl font-semibold">0</div>
-            <div className="text-green-600">0%</div>
-          </div>
-          <div className="p-4 bg-gray-100 rounded">
-            <div className="text-gray-600">Meetings Booked</div>
-            <div className="text-2xl font-semibold">0</div>
-            <div className="text-green-600">0%</div>
-          </div>
+          <DashboardCards />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
