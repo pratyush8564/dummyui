@@ -22,7 +22,7 @@ function App() {
 
   const navigate = useNavigate();
 
-  const handleFormSubmit = async (e: any) => {
+  const handleFormSubmit = async (e:any) => {
     e.preventDefault();
 
     if (isSignUp && password !== confirmPassword) {
