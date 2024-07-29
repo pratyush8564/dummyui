@@ -183,7 +183,7 @@ const Dashboard = () => {
           <div className="flex-1 ml-0 mt-4 md:ml-4 md:mt-0">
             <div className="flex flex-wrap gap-4 ">
               {/* <!-- Card 1 --> */}
-              <div className="flex flex-col bg-[#F3F4F6] rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
+              <div className="flex flex-col bg-white rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
                 <div className="flex gap-2 items-center">
                   <Icon icon={dots} />
                   <p className="font-medium">Total Prospects</p>
@@ -204,7 +204,7 @@ const Dashboard = () => {
               </div>
 
               {/* <!-- Card 2 --> */}
-              <div className="flex flex-col bg-[#F3F4F6] rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
+              <div className="flex flex-col bg-white rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
                 <div className="flex gap-2 items-center">
                   <Icon icon={dots2} />
                   <p className="font-medium">Customers</p>
@@ -225,7 +225,7 @@ const Dashboard = () => {
               </div>
 
               {/* <!-- Card 3 --> */}
-              <div className="flex flex-col bg-[#F3F4F6] rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
+              <div className="flex flex-col bg-white rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
                 <div className="flex gap-2 items-center">
                   <Icon icon={dots3} />
                   <p className="font-medium">Engaged</p>
@@ -246,7 +246,7 @@ const Dashboard = () => {
               </div>
 
               {/* <!-- Card 4 --> */}
-              <div className="flex flex-col bg-[#F3F4F6] rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
+              <div className="flex flex-col bg-white rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
                 <div className="flex gap-2 items-center">
                   <Icon icon={dots4} />
                   <p className="font-medium">Meetings booked</p>
