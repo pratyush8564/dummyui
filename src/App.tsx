@@ -46,45 +46,41 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row overflow-auto">
-          <div className="w-full lg:min-h-dvh lg:w-6/12 md:p-2  lg:block">
-              <div
-                className="min-h-full block md:flex flex-col justify-between rounded-lg"
-                style={{
-                  backgroundImage: 'url("src/assets/Background.png")',
+      <div className="w-full lg:min-h-dvh lg:w-6/12 md:p-2  lg:block">
+        <div
+          className="min-h-full hidden md:flex flex-col justify-between rounded-lg"
+          style={{
+            backgroundImage: 'url("src/assets/Background.png")',
 
-                  backgroundSize: "cover",
+            backgroundSize: "cover",
 
-                  backgroundPosition: "center center",
-                }}
-              >
-                <div className="px-5 py-5 flex flex-col items-center justify-center">
-                  <span className="p-[19.50px]">
-                    {" "}
-                    <img
-                      src="/src/assets/Logo.png"
-                      alt="logo"
-                      className=""
-                    />{" "}
-                  </span>
-                </div>
+            backgroundPosition: "center center",
+          }}
+        >
+          <div className="px-5 py-5 flex flex-col items-center justify-center">
+            <span className="p-[19.50px]">
+              {" "}
+              <img src="/src/assets/Logo.png" alt="logo" className="" />{" "}
+            </span>
+          </div>
 
-                <div className="flex w-full items-center justify-center md:max-w-md xl:max-w-xl mx-auto">
-                  <img
-                    src="/src/assets/Charts.png"
-                    alt="FeatureGraphCard"
-                    className="w-full"
-                  />
-                </div>
+          <div className="flex w-full items-center justify-center md:max-w-md xl:max-w-xl mx-auto">
+            <img
+              src="/src/assets/Charts.png"
+              alt="FeatureGraphCard"
+              className="w-full"
+            />
+          </div>
 
-                <div className="flex items-center justify-center md:text-[2rem] lg:text-[2.625rem] text-[#FFFFFF]">
-                  <p className="mt-auto">AI built for sales</p>
-                </div>
+          <div className="flex items-center justify-center md:text-[2rem] lg:text-[2.625rem] text-[#FFFFFF]">
+            <p className="mt-auto">AI built for sales</p>
+          </div>
 
-                <div className="flex items-center justify-center text-xs text-[#ffffff] pb-[20px]">
-                  <span>© CommanderAl, Inc. 2024</span>
-                </div>
-              </div>
-            </div>
+          <div className="flex items-center justify-center text-xs text-[#ffffff] pb-[20px]">
+            <span>© CommanderAl, Inc. 2024</span>
+          </div>
+        </div>
+      </div>
 
       <div className="md:w-1/2 flex flex-col items-center justify-center p-4">
         <p className="text-xl md:text-2xl mb-2">
@@ -134,9 +130,9 @@ function App() {
 
           {!isSignUp && (
             <div className="text-right mb-4">
-             <Link to="/forgot-password" className="text-blue-500">
-          Forgot Your Password?
-        </Link>
+              <Link to="/forgot-password" className="text-blue-500">
+                Forgot Your Password?
+              </Link>
             </div>
           )}
 

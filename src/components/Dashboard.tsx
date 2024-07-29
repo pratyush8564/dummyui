@@ -93,7 +93,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="flex min-h-screen bg-slate-200">
+      <div className="flex min-h-screen bg-gray-100">
         {/* Sidebar */}
         <div className="ml-4  pr-4 mt-4 bg-white">
           <div>{/* <Icon icon={logo} /> */}</div>
