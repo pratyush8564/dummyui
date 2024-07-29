@@ -3,9 +3,7 @@ import { useState } from "react";
 import useAuthStore from "./useAuthStore";
 
 import { Link, useNavigate } from "react-router-dom";
-// wastenot@commanderai.com
-// pass: 12345
-// https://app-stg.commanderai.com/onboarding
+
 function App() {
   const [email, setEmail] = useState("");
 
