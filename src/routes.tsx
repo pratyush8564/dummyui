@@ -3,6 +3,7 @@ import App from './App';
 import Dashboard from './components/Dashboard';
 import ForgotPassword from './components/ForgotPassword';
 import Onboarding from './components/Onboarding';
+import ProtectedRoute from './ProtectedRoute';
 
 function Root() {
   return (
@@ -10,9 +11,8 @@ function Root() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="forgot-password" element={<ForgotPassword />}/>
-        <Route path="/onboarding" element={<Onboarding />} />
-        <Route path='/dashboard' element={<Dashboard/>} />
-      </Routes>
+        <Route path="/onboarding" element={<ProtectedRoute element={<Onboarding />} />} />
+        <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />      </Routes>
     </Router>
   );
 }
