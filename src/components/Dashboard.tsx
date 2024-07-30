@@ -21,6 +21,7 @@ import {
   engagedGraph,
   forwardIcon,
   globeIcon,
+  hamburgerIcon,
   heatmapIcon,
   inteliigenceIcon,
   logo,
@@ -134,8 +135,9 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100  ">
       {/* Header */}
-      <div className="flex justify-between items-center p-4 bg-gray-100">
+      <div className="flex justify-between items-center p-4 bg-gray-100 ">
         <Icon icon={logo} styleClass="hidden lg:block" />
+        <Icon icon={hamburgerIcon} styleClass="lg:hidden"/>
         <Icon icon={commanderMobileIcon} styleClass="lg:hidden" />
         <div className="flex items-center">
           {user ? (
@@ -145,7 +147,7 @@ const Dashboard = () => {
                 alt={`${user.first_name} ${user.last_name}`}
                 className="w-8 h-8 rounded-full mr-2"
               />
-              <p className="mr-2">
+              <p className="hidden md:block mr-2">
                 {user.first_name} {user.last_name}
               </p>
             </>
@@ -215,7 +217,7 @@ const Dashboard = () => {
         {/* Main Content */}
         <div className="flex flex-1 flex-col lg:flex-row ml-4 mt-2">
           {/* Left Sidebar (Prospects) */}
-          <div className="bg-white p-2 shadow flex flex-col w-full lg:w-1/4 min-h-screen rounded-lg">
+          <div className="bg-white p-2 shadow flex flex-col w-full lg:w-1/4 min-h-screen rounded-lg ">
             <div className="flex gap-1 mb-4">
               <div className="flex items-center gap-2 border border-gray-400 rounded-lg p-2 w-full">
                 <input
@@ -282,7 +284,7 @@ const Dashboard = () => {
 
           {/* Main Content Area */}
           <div className="flex-1 ml-0 mt-4 lg:ml-4 md:mt-0">
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 ">
               {/* Card 1 */}
               <div className="flex flex-col bg-white rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
                 <div className="flex gap-2 items-center">
@@ -443,9 +445,9 @@ const Dashboard = () => {
                       )}
                     </div>
                   </div>
-                  <hr className="my-4 border-gray-400 w-full" />
+                  {/* <hr className="my-4 border-gray-400 w-full" /> */}
                   <div>
-                    <h2 className="font-medium text-2xl">
+                    <h2 className="font-medium text-2xl mt-4">
                       Actionable Intelligence
                     </h2>
                   </div>
