@@ -3,33 +3,43 @@ import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 const ChartCard = ({ title, data, total, percentageChange, icon, dots }: any) => {
-    const chartData = data?.map((point: any) => [point.x]);
+    const chartData = data?.map((point: any) => [point.x, point.y]);
+ 
+
     const options = {
         chart: {
-            type: 'column',
+            type: 'line', 
             height: 80,
             width: 100,
-            color:"black"
         },
         title: {
             text: ''
         },
         xAxis: {
-            visible: true,
+        
+            labels: {
+                enabled: false
+            },
+            tickWidth: 0,
+                    },
+        yAxis: {
+            title: {
+                text: ''            },
             labels: {
                 enabled: false 
             },
-            tickWidth: 0,
-
-        },
-        yAxis: {
-            visible: false
+        
+         
+            
         },
         series: [
             {
                 data: chartData,
-                pointWidth: 0.1,
-                color: 'gray',
+                lineWidth: 1, 
+                color: '#08736D', 
+                marker: {
+                    enabled: false 
+                }
             }
         ],
         legend: {
