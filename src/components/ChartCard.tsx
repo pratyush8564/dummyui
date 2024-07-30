@@ -3,7 +3,7 @@ import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 const ChartCard = ({ title, data, total, percentageChange, icon, dots }: any) => {
-    const chartData = data?.map((point: any) => [point.x]);
+    const chartData = data?.map((point: any) => [point.x, point.y]);
 
 
     const options = {
