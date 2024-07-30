@@ -31,6 +31,7 @@ import {
   settingIcon,
 } from "./icon";
 import Icon from "./icons";
+import ChartCard from "./ChartCard";
 
 const Dashboard = () => {
   const [searchKeyword, setSearchKeyword] = useState(""); // Default search keyword
@@ -43,7 +44,7 @@ const Dashboard = () => {
     handleLogout,
     user,
     initializeUserFromLocalStorage,
-  } = useAuthStore((state) => ({
+  }: any = useAuthStore((state) => ({
     user: state.user,
     handleSearch: state.handleSearch,
     handleDetails: state.handleDetails,
@@ -123,8 +124,8 @@ const Dashboard = () => {
     if (!selectedProspect) return;
 
     // Update actionable items by filtering out the removed item
-    const updatedActionableItems = selectedProspect.actionable_items.filter((item:any) => item.id !== id);
-    
+    const updatedActionableItems = selectedProspect.actionable_items.filter((item: any) => item.id !== id);
+
     // Update the state with the new list of actionable items
     setSelectedProspect({
       ...selectedProspect,
@@ -137,7 +138,7 @@ const Dashboard = () => {
       {/* Header */}
       <div className="flex justify-between items-center p-4 bg-gray-100 ">
         <Icon icon={logo} styleClass="hidden lg:block" />
-        <Icon icon={hamburgerIcon} styleClass="lg:hidden"/>
+        <Icon icon={hamburgerIcon} styleClass="lg:hidden" />
         <Icon icon={commanderMobileIcon} styleClass="lg:hidden" />
         <div className="flex items-center">
           {user ? (
@@ -252,7 +253,7 @@ const Dashboard = () => {
               {/* Prospect List */}
               <div className="flex-1">
                 {companyDetails?.company_prospects?.length ? (
-                  companyDetails.company_prospects.map((prospect) => (
+                  companyDetails.company_prospects.map((prospect: any) => (
                     <div
                       key={prospect.id}
                       className="flex items-center justify-between gap-4 mb-2 border-b border-gray-300 pb-2 cursor-pointer hover:bg-gray-200 p-2 rounded"
@@ -285,122 +286,49 @@ const Dashboard = () => {
           {/* Main Content Area */}
           <div className="flex-1 ml-0 mt-4 lg:ml-4 md:mt-0">
             <div className="flex flex-wrap gap-4 ">
-              {/* Card 1 */}
-              <div className="flex flex-col bg-white rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
-                <div className="flex gap-2 items-center">
-                  <Icon icon={dots} />
-                  <p className="font-medium">Total Prospects</p>
-                </div>
-                <div className="flex gap-2 mt-2 items-center">
-                  <p className="text-2xl font-bold">
-                    {companyDetails?.graph_data?.total_prospects?.total}
-                  </p>
-                  <Icon icon={barIcon} />
-                  <span className="text-[#08736D]">
-                    {
-                      companyDetails?.graph_data?.total_prospects
-                        ?.percentage_change
-                    }
-                    %
-                  </span>
-                </div>
-                <div className="mt-2 flex justify-center items-center overflow-hidden w-full">
-                  <div className="w-[80px] h-[80px] flex justify-center items-center">
-                    <Icon
-                      icon={projectGraph}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
 
-              {/* Card 2 */}
-              <div className="flex flex-col bg-white rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
-                <div className="flex gap-2 items-center">
-                  <Icon icon={dots2} />
-                  <p className="font-medium">Customers</p>
-                </div>
-                <div className="flex gap-2 mt-2 items-center">
-                  <p className="text-2xl font-bold">
-                    {companyDetails?.graph_data?.customer_prospects?.total}
-                  </p>
-                  <Icon icon={barIcon} />
-                  <span className="text-[#08736D]">
-                    {
-                      companyDetails?.graph_data?.customer_prospects
-                        ?.percentage_change
-                    }
-                    %
-                  </span>
-                </div>
-                <div className="mt-2 flex justify-center items-center overflow-hidden w-full">
-                  <div className="w-[80px] h-[80px] flex justify-center items-center">
-                    <Icon
-                      icon={customerGraph}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
+              <ChartCard
+                title="Total Prospects"
+                icon={barIcon}
+                dots={dots}
+                data={companyDetails?.graph_data?.total_prospects?.data}
+                total={companyDetails?.graph_data?.total_prospects?.total}
+                percentageChange={companyDetails?.graph_data?.total_prospects?.percentage_change}
+              />
 
-              {/* Card 3 */}
-              <div className="flex flex-col bg-white rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
-                <div className="flex gap-2 items-center">
-                  <Icon icon={dots3} />
-                  <p className="font-medium">Engaged</p>
-                </div>
-                <div className="flex gap-2 mt-2 items-center">
-                  <p className="text-2xl font-bold">
-                    {companyDetails?.graph_data?.engaged_prospects?.total}
-                  </p>
-                  <Icon icon={barIcon} />
-                  <span className="text-[#08736D]">
-                    {
-                      companyDetails?.graph_data?.engaged_prospects
-                        ?.percentage_change
-                    }
-                    %
-                  </span>
-                </div>
-                <div className="mt-2 flex justify-center items-center overflow-hidden w-full">
-                  <div className="w-[80px] h-[80px] flex justify-center items-center">
-                    <Icon
-                      icon={engagedGraph}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
 
-              {/* Card 4 */}
-              <div className="flex flex-col bg-white rounded-lg gap-4 p-4 flex-1 min-w-[170px] max-w-[calc(25%-16px)]">
-                <div className="flex gap-2 items-center">
-                  <Icon icon={dots4} />
-                  <p className="font-medium">Meetings booked</p>
-                </div>
-                <div className="flex gap-2 mt-2 items-center">
-                  <p className="text-2xl font-bold">
-                    {companyDetails?.graph_data?.meetings_booked?.total}
-                  </p>
-                  <Icon icon={barDownIcon} />
-                  <span className="text-[#BB3D34]">
-                    {
-                      companyDetails?.graph_data?.meetings_booked
-                        ?.percentage_change
-                    }
-                    %
-                  </span>
-                </div>
-                <div className="mt-2 flex justify-center items-center overflow-hidden w-full">
-                  <div className="w-[80px] h-[80px] flex justify-center items-center">
-                    <Icon
-                      icon={MeetingGraph}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
+              <ChartCard
+                title="Customers"
+                icon={barIcon}
+                dots={dots2}
+
+                data={companyDetails?.graph_data?.customer_prospects?.data}
+                total={companyDetails?.graph_data?.customer_prospects?.total}
+                percentageChange={companyDetails?.graph_data?.customer_prospects?.percentage_change}
+              />
+
+
+              <ChartCard
+                title="Engaged"
+                dots={dots3}
+
+                icon={barIcon}
+                data={companyDetails?.graph_data?.engaged_prospects?.data}
+                total={companyDetails?.graph_data?.engaged_prospects?.total}
+                percentageChange={companyDetails?.graph_data.engaged_prospects?.percentage_change}
+              />
+
+
+              <ChartCard
+                title="Meetings booked"
+                dots={dots4}
+                icon={barDownIcon}
+                data={companyDetails?.graph_data?.meetings_booked?.data}
+                total={companyDetails?.graph_data?.meetings_booked.total}
+                percentageChange={companyDetails?.graph_data?.meetings_booked?.percentage_change}
+              />
             </div>
+
             <div className="bg-white rounded-lg mr-4">
               {selectedProspect ? (
                 <div className="ml-4 mt-4 p-4">
@@ -461,15 +389,15 @@ const Dashboard = () => {
                           <div
                             className="cursor-pointer"
                             onClick={() => {
-                              handleRemoveItem(item.id); 
+                              handleRemoveItem(item.id);
                             }}
                           >
-                          <Icon icon={checkboxRightIcon} />
+                            <Icon icon={checkboxRightIcon} />
                           </div>
                           <div
                             className="cursor-pointer"
                             onClick={() => {
-                              handleRemoveItem(item.id); 
+                              handleRemoveItem(item.id);
                             }}
                           >
                             <Icon icon={checkboxIcon} />
