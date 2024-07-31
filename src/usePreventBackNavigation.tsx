@@ -7,8 +7,12 @@ const usePreventBackNavigation = () => {
   useEffect(() => {
     const handlePopState = () => {
       const token = localStorage.getItem('authToken');
-      if (token) {
-        navigate('/onboarding'); // Redirect to the dashboard or home if user tries to go back
+      const companyId = localStorage.getItem('companyId');
+      console.log(companyId, "copmany idss:")
+
+      // Redirect if the user tries to navigate back and company_id is present
+      if (token && companyId) {
+        navigate('/dashboard'); // or any route you wish to redirect to
       }
     };
 

@@ -1,5 +1,3 @@
-
-
 const ForgotPassword = () => {
   return (
     <div>
@@ -51,33 +49,35 @@ const ForgotPassword = () => {
                 <h2 className="text-2xl trialrooftopbold pb-5">
                   Forgot Your Password?
                 </h2>
-               <p>We'll send you a link to create a new password</p>
-               <div className="mt-4">
-            <label className="block">E-mail</label>
-            <input
-              className="border-gray-800 border-2 rounded-lg w-1/2 p-2"
-              value="email"
-            />
-          </div>
-          <div className="mt-4 ">
-          <button
-            type="submit"
-            className="bg-[#08736D] p-2 rounded-xl text-white  mb-4 w-1/4 mr-2"
-          >Back
-            </button>
-            <button
-            type="submit"
-            className="border-[#08736D] border-2 p-2 rounded-xl text-black  mb-4 w-1/4"
-          >Submit
-            </button>
-          </div>
+                <p>We'll send you a link to create a new password</p>
+                <div className="mt-4">
+                  <label className="block">E-mail</label>
+                  <input
+                    className="border-gray-800 border-2 rounded-lg w-1/2 p-2"
+                    value="email"
+                  />
+                </div>
+                <div className="mt-4 ">
+                  <button
+                    type="submit"
+                    className="bg-[#08736D] p-2 rounded-xl text-white  mb-4 w-1/4 mr-2"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="submit"
+                    className="border-[#08736D] border-2 p-2 rounded-xl text-black  mb-4 w-1/4"
+                  >
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;

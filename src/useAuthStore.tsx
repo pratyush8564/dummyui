@@ -125,26 +125,24 @@ const useAuthStore = create<AuthStore>((set) => ({
     }
   },
 
-  handleSignUp: async (email: string, password: string, confirmPassword: string) => {
+  handleSignUp: async (email, password, confirmPassword) => {
     set({ loading: true });
     try {
-      // Check if passwords match
       if (password !== confirmPassword) {
         alert("Passwords don't match");
         return;
       }
-      
-      // Perform sign-up API call
+
       const response = await axios.post(
         "https://api-stg.commanderai.com/auth/signup",
         { email, password }
       );
-      
+
       console.log("Signup Successful", response.data);
-      
-      // Reset form fields on success
+
+      // Reset form fields
       set({ email: "", password: "", confirmPassword: "" });
-    } catch (error: any) {
+    } catch (error:any) {
       console.error("Error signing up:", error.message);
       alert("Error signing up. Please try again.");
     } finally {
@@ -152,26 +150,24 @@ const useAuthStore = create<AuthStore>((set) => ({
     }
   },
   
-
-  handleSignIn: async (email: string, password: string) => {
+  handleSignIn: async (email, password) => {
     set({ loading: true });
     try {
-      // Perform sign-in API call
       const response = await axios.post(
         "https://api-stg.commanderai.com/auth/login",
         { email, password }
       );
-  
+
       console.log("Sign In Response:", response.data);
-  
+
       if (response.data.success && response.data.data.token) {
         const { token, user } = response.data.data;
-  
+
         // Store token and user in local storage
         localStorage.setItem("authToken", token);
         localStorage.setItem("authUser", JSON.stringify(user));
         localStorage.setItem("companyId", user.company.id); // Store company ID
-  
+
         // Update state with user info
         set({
           email: "",
@@ -182,14 +178,14 @@ const useAuthStore = create<AuthStore>((set) => ({
             photo_url: user.photo_url,
           },
         });
-  
-        // Optionally navigate to another page or show a success message
-        // navigate("/onboarding"); // Uncomment if needed
+
+        // Navigate to onboarding page
+        // You might need to pass navigate function from App component if required here
       } else {
         console.error("Failed to get token from response");
         alert("Failed to sign in. Please try again.");
       }
-    } catch (error: any) {
+    } catch (error:any) {
       console.error("Error signing in:", error.message);
       alert("Error signing in. Please check your credentials.");
     } finally {
@@ -204,6 +200,7 @@ const useAuthStore = create<AuthStore>((set) => ({
       // Handle logout logic
       localStorage.removeItem("authToken");
       localStorage.removeItem("authUser");
+      localStorage.removeItem("companyId")
       set({ user: null });
     } catch (error: any) {
       console.error("Error logging out:", error.message);

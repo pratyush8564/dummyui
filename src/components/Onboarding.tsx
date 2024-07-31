@@ -40,53 +40,48 @@ ${file.name}`);
       <div>
         <div className="xl:h-screen sm:h-screen w-full flex bg-[#ffffff]">
           <div className="w-full md:flex-row flex flex-col flex-wrap justify-center items-stretch">
-          <div className="w-full lg:min-h-dvh lg:w-6/12 md:p-2">
-  {/* Background Image and Content for Larger Screens */}
-  <div
-    className="hidden md:flex flex-col justify-between min-h-full rounded-lg"
-    style={{
-      backgroundImage: 'url("src/assets/Background.png")',
-      backgroundSize: "cover",
-      backgroundPosition: "center center",
-    }}
-  >
-    <div className="px-5 py-5 flex flex-col items-center justify-center">
-      <span className="p-[19.50px]">
-        <img
-          src="/src/assets/Logo.png"
-          alt="logo"
-          className=""
-        />
-      </span>
-    </div>
+            <div className="w-full lg:min-h-dvh lg:w-6/12 md:p-2">
+              {/* Background Image and Content for Larger Screens */}
+              <div
+                className="hidden md:flex flex-col justify-between min-h-full rounded-lg"
+                style={{
+                  backgroundImage: 'url("src/assets/Background.png")',
+                  backgroundSize: "cover",
+                  backgroundPosition: "center center",
+                }}
+              >
+                <div className="px-5 py-5 flex flex-col items-center justify-center">
+                  <span className="p-[19.50px]">
+                    <img src="/src/assets/Logo.png" alt="logo" className="" />
+                  </span>
+                </div>
 
-    <div className="flex w-full items-center justify-center md:max-w-md xl:max-w-xl mx-auto">
-      <img
-        src="/src/assets/Charts.png"
-        alt="FeatureGraphCard"
-        className="w-full"
-      />
-    </div>
+                <div className="flex w-full items-center justify-center md:max-w-md xl:max-w-xl mx-auto">
+                  <img
+                    src="/src/assets/Charts.png"
+                    alt="FeatureGraphCard"
+                    className="w-full"
+                  />
+                </div>
 
-    <div className="flex items-center justify-center md:text-[2rem] lg:text-[2.625rem] text-[#FFFFFF]">
-      <p className="mt-auto">Selling Made Simple</p>
-    </div>
+                <div className="flex items-center justify-center md:text-[2rem] lg:text-[2.625rem] text-[#FFFFFF]">
+                  <p className="mt-auto">Selling Made Simple</p>
+                </div>
 
-    <div className="flex items-center justify-center text-xs text-[#ffffff] pb-[20px]">
-      <span>© CommanderAl, Inc. 2024</span>
-    </div>
-  </div>
+                <div className="flex items-center justify-center text-xs text-[#ffffff] pb-[20px]">
+                  <span>© CommanderAl, Inc. 2024</span>
+                </div>
+              </div>
 
-  {/* Mobile Logo */}
-  <div className="md:hidden flex items-center justify-center p-4">
-    <Icon icon={logo} />
-  </div>
-</div>
-
+              {/* Mobile Logo */}
+              <div className="md:hidden flex items-center justify-center p-4">
+                <Icon icon={logo} />
+              </div>
+            </div>
 
             <div className="w-full lg:w-6/12 flex md:items-center justify-center px-5 relative">
               <div className="text-center w-full max-w-[900px]">
-                <h2 className="text-2xl trialrooftopbold pb-5">
+                <h2 className="text-[29px] font-medium pb-5">
                   Connect your accounts
                 </h2>
 
@@ -98,10 +93,10 @@ ${file.name}`);
 
                        flex items-center justify-center xl:ronded-[10px] false"
                       >
-                        <div className="px-3">
+                        <div className="relative px-4 ">
                           <Icon styleClass="camera" icon={hubspotIcon} />
                           <Icon
-                            styleClass="camera absolute bottom-8 left-[92px]"
+                            styleClass="camera ml-7  absolute bottom-1 left-1/2 transform -translate-x-1/2"
                             icon={hubspotLogo}
                           />
                         </div>
@@ -215,7 +210,7 @@ ${file.name}`);
                     >
                       <div className="w-full flex flex-wrap items-start justify-between ">
                         <div className=" w-full md:w-3/4 ">
-                          <h2 className="text-lg font-bold text-start pb-[8px]">
+                          <h2 className="text-base font-medium text-start pb-[8px]">
                             Got Lists? Drop it like it's hot!
                           </h2>
 
@@ -235,11 +230,11 @@ ${file.name}`);
                           maxLength={31457280}
                         />
 
-                        <div className="w-full md:w-1/4 ">
+                        <div className="w-full md:w-1/4 mt-2">
                           <button
                             type="button"
                             onClick={handleButtonClick}
-                            className="group relative flex justify-center p-0.5 text-center font-medium
+                            className="group relative flex justify-center p-0.5  text-center font-medium
 
                             border-[#08736D] bg-transparent
 
@@ -272,7 +267,6 @@ ${file.name}`);
                         Finish
                       </button>
                     </div>
-           
                   </div>
                 </div>
               </div>
@@ -285,6 +279,3 @@ ${file.name}`);
 };
 
 export default Onboarding;
-
-
- 

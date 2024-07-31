@@ -1,28 +1,26 @@
 import { useEffect, useState } from "react";
-
-import useAuthStore from "./useAuthStore";
-
 import { Link, useNavigate } from "react-router-dom";
+import useAuthStore from "./useAuthStore";
 import Icon from "./components/icons";
 import { logo } from "./components/icon";
+
 function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const isSignUp = useAuthStore(state => state.isSignUp);
-  const loading = useAuthStore(state => state.loading);
-  const toggleMode = useAuthStore(state => state.toggleMode);
-  const handleSignUp = useAuthStore(state => state.handleSignUp);
-  const handleSignIn = useAuthStore(state => state.handleSignIn);
+  const isSignUp = useAuthStore((state) => state.isSignUp);
+  const loading = useAuthStore((state) => state.loading);
+  const toggleMode = useAuthStore((state) => state.toggleMode);
+  const handleSignUp = useAuthStore((state) => state.handleSignUp);
+  const handleSignIn = useAuthStore((state) => state.handleSignIn);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if token exists and redirect
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
     if (token) {
-      navigate('/onboarding');
+      navigate("/onboarding");
     }
   }, [navigate]);
 
@@ -37,16 +35,19 @@ function App() {
     try {
       if (isSignUp) {
         await handleSignUp(email, password, confirmPassword);
+        // Switch to sign-in mode after successful sign-up
+        toggleMode();
       } else {
         await handleSignIn(email, password);
-        // Reset form fields
-        setEmail("");
-        setPassword("");
-        setConfirmPassword(""); // Optional if not used in login
-
-        // Navigate after successful login
-        navigate("/onboarding");
       }
+
+      // Reset form fields
+      setEmail("");
+      setPassword("");
+      setConfirmPassword(""); // Optional if not used in login
+
+      // Navigate after successful authentication
+      navigate("/onboarding");
     } catch (error) {
       console.error("Authentication Error:", error);
     }
@@ -67,8 +68,7 @@ function App() {
           {/* Content for larger screens */}
           <div className="px-5 py-5 flex flex-col items-center justify-center">
             <span className="p-[19.50px]">
-              {" "}
-              <img src="/src/assets/Logo.png" alt="logo" className="" />{" "}
+              <img src="/src/assets/Logo.png" alt="logo" className="" />
             </span>
           </div>
 
@@ -96,11 +96,11 @@ function App() {
       </div>
 
       <div className="md:w-1/2 flex flex-col items-center justify-center p-4">
-        <p className="text-xl md:text-2xl mb-2">
+        <p className="text-xl md:text-2xl mb-2 font-medium">
           {isSignUp ? "Hello!" : "Welcome Back!"}
         </p>
 
-        <span className="mb-4 text-center">
+        <span className="mb-4 text-center text-sm font-normal">
           {isSignUp
             ? "Enter your e-mail and password"
             : "Sign into your account"}
@@ -109,26 +109,24 @@ function App() {
         <form onSubmit={handleFormSubmit} className="w-full max-w-sm">
           <div className="mb-4">
             <label className="block">E-mail</label>
-
             <input
-              className="border-gray-800 border-2 rounded-lg w-full p-2"
-              type={email}
+              className="border-2 rounded-xl w-full p-2 mt-1"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder="toni@for.co"
               required
             />
           </div>
 
           <div className="mb-4">
             <label className="block">Password</label>
-
             <input
               type="password"
-              className="border-gray-800 border-2 rounded-lg w-full p-2"
+              className="border-2 rounded-xl w-full p-2 mt-1"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder="Minimum 8 characters"
               required
             />
           </div>
@@ -136,13 +134,12 @@ function App() {
           {isSignUp && (
             <div className="mb-4">
               <label className="block">Confirm Password</label>
-
               <input
                 type="password"
-                className="border-gray-800 border-2 rounded-lg w-full p-2"
+                className="border-2 rounded-xl w-full p-2 mt"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm Password"
+                placeholder="Confirm password"
               />
             </div>
           )}
@@ -176,10 +173,13 @@ function App() {
             </span>
           </p>
 
-          <p className="text-center mb-2">or</p>
+          <div className="flex items-center justify-center my-4">
+            <div className="flex-1 border-t border-gray-300"></div>
+            <p className="mx-4 text-center">or</p>
+            <div className="flex-1 border-t border-gray-300"></div>
+          </div>
 
           {/* Sign Up with Google */}
-
           <button
             type="button"
             className="flex items-center justify-center border-[#08736D] border-2 rounded-lg mb-2 gap-2 p-2 w-full"
@@ -189,11 +189,10 @@ function App() {
               alt="google-logo"
               className="ml-4"
             />
-            Sign Up with Google
+            {isSignUp ? "Sign Up with Google" : "Sign In with Google"}
           </button>
 
           {/* Sign Up with Outlook */}
-
           <button
             type="button"
             className="flex items-center justify-center border-[#08736D] border-2 rounded-lg mb-2 gap-2 p-2 w-full"
@@ -203,7 +202,7 @@ function App() {
               alt="outlook-logo"
               className="ml-4"
             />
-            Sign Up with Outlook
+            {isSignUp ? "Sign Up with Outlook" : "Sign In with Outlook"}
           </button>
         </form>
       </div>
